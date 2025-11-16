@@ -1,4 +1,4 @@
-package fiap.com.br.lifepath;
+package fiap.com.br.lifepath.config;
 
 import io.github.cdimascio.dotenv.Dotenv;
 import jakarta.annotation.PostConstruct;
