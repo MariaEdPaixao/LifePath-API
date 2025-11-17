@@ -22,10 +22,8 @@ public class AuthFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         var path = request.getRequestURI();
-        //System.out.println("Request URI: " + path);
 
-        // Liberar login e cadastro
-        if (path.equals("/login") || path.equals("/cadastro")) {
+        if (path.equals("/login") || path.equals("/register")) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -49,6 +47,15 @@ public class AuthFilter extends OncePerRequestFilter {
         var user = tokenService.getUserFromToken(jwt);
 
         System.out.println(user);
+
+        if (user == null) {
+            response.setStatus(401);
+            response.getWriter().write("""
+        {"message": "Token inválido ou expirado"}
+    """);
+            return;
+        }
+
 
         var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
