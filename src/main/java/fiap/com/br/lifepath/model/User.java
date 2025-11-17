@@ -43,6 +43,7 @@ public class User implements UserDetails {
 
     @Column(name = "created_at", nullable = false, updatable = false)
     @Getter @Setter
+    @Builder.Default
     private LocalDateTime created = LocalDateTime.now();
 
     @Override

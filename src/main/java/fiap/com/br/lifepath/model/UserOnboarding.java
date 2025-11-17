@@ -33,6 +33,7 @@ public class UserOnboarding {
     private Status status;
 
     @Column(name = "created_at", updatable = false)
+    @Builder.Default
     private LocalDateTime created = LocalDateTime.now();
 
     @ManyToOne

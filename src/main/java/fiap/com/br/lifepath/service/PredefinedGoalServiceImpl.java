@@ -5,6 +5,7 @@ import fiap.com.br.lifepath.repository.PredefinedGoalRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PredefinedGoalServiceImpl implements PredefinedGoalService {
@@ -18,5 +19,9 @@ public class PredefinedGoalServiceImpl implements PredefinedGoalService {
     @Override
     public List<PredefinedGoal> getAll() {
         return predefinedGoalRepository.findAll();
+    }
+    @Override
+    public Optional<PredefinedGoal> findById(Integer id){
+        return predefinedGoalRepository.findById(id);
     }
 }
